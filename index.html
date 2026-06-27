@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina_web_8_parejas</title>
+  
+  <style type="text/css">
+    @import url("webfonts/poppins_bold/stylesheet.css");
+
+    /* Variables de Color (Paleta Original) */
+    :root {
+      --color-fondo-bloque: #E9E6FA;
+      --color-principal: #6C4DD3;
+      --color-oscuro: #101010;
+      --color-texto: #070606;
+    }
+
+    /* Reseteo General */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "poppins bold", sans-serif;
+      font-size: 18px;
+      color: var(--color-texto);
+      line-height: 1.6;
+      background-color: #ffffff;
+    }
+
+    /* Contenedor de la Página */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Encabezado */
+    .header-principal {
+      background-color: var(--color-fondo-bloque);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .logo-marca {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-marca img {
+      height: 70px;
+      width: auto;
+    }
+
+    .marca-texto {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .marca-texto .wiki { color: var(--color-oscuro); }
+    .marca-texto .diseno { color: var(--color-principal); }
+
+    .buscador-perfil {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .buscador-perfil input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .avatar-usuario {
+      height: 45px;
+      width: auto;
+      border-radius: 50%;
+    }
+
+    /* Títulos */
+    h1 {
+      font-size: 36px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .titulo-seccion-centrado {
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      margin: 40px 0 20px 0;
+    }
+
+    /* Grid del Contenido Introductorio */
+    .intro-seccion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    /* Grid de la Definición */
+    .definicion-seccion {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .definicion-seccion ul {
+      list-style-position: inside;
+    }
+
+    .definicion-seccion li {
+      margin-bottom: 15px;
+    }
+
+    /* --- SISTEMA DE TARJETAS 3D (EFECTO FLIP) --- */
+    .contenedor-tarjetas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .tarjeta-giro {
+      background-color: transparent;
+      width: 100%;
+      height: 220px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .tarjeta-interior {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .tarjeta-giro:hover .tarjeta-interior {
+      transform: rotateY(180deg);
+    }
+
+    .tarjeta-frontal, .tarjeta-trasera {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .tarjeta-frontal {
+      background-color: var(--color-principal);
+      color: white;
+      font-size: 22px;
+    }
+
+    .tarjeta-trasera {
+      background-color: var(--color-fondo-bloque);
+      color: var(--color-oscuro);
+      transform: rotateY(180deg);
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    /* Bloque de Ejemplos */
+    .bloque-ejemplos {
+      text-align: center;
+      background-color: #fafafa;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .bloque-ejemplos p {
+      margin-bottom: 12px;
+    }
+
+    /* Imágenes Flexibles */
+    img.img-fluida {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* Pie de Página */
+    .footer-principal {
+      background-color: var(--color-fondo-bloque);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 30px;
+      padding: 30px;
+      border-radius: 8px;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .footer-links p {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .redes-sociales {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .redes-sociales img {
+      width: 35px;
+      height: auto;
+    }
+
+    /* Adaptabilidad para Celulares y Tablets */
+    @media (max-width: 768px) {
+      .header-principal, .footer-principal {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+      }
+      .intro-seccion, .definicion-seccion {
+        grid-template-columns: 1fr;
+      }
+      .redes-sociales {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <!-- Script de Precarga Original -->
+  <script type="text/javascript">
+    function MM_preloadImages() {
+      var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+        var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+        if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+    }
+  </script>
+</head>
+
+	
+<body onLoad="MM_preloadImages('BOTONES/Btn-inicio-2.png','BOTONES/Sitios-web-2.png','BOTONES/Btn-contacto-2.png')">
+
+  <div class="container">
+
+    <!-- ENCABEZADO -->
+    <header class="header-principal">
+      <div class="logo-marca">
+        <img src="IMAGENES/logo.png" alt="Logo Wiki Diseño">
+        <div class="marca-texto">
+          <span class="wiki">Wiki</span><span class="diseno">Diseño</span>
+        </div>
+      </div>
+      <div class="buscador-perfil">
+        <label for="search">Buscar:</label>
+        <input type="search" name="search" id="search" placeholder="Escribe aquí...">
+        <img src="IMAGENES/inicio_sesion.jpg" alt="Iniciar Sesión" class="avatar-usuario">
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+      <h1>Diseño de interacción</h1>
+
+      <!-- INTRODUCCIÓN -->
+      <section class="intro-seccion">
+        <p>El diseño de interacción en una página web se refiere a cómo los usuarios se comunican y navegan dentro de ella, a través de elementos como botones, menús, formularios, animaciones y flujos de navegación. Su objetivo es que la experiencia sea intuitiva, eficiente y agradable.</p>
+        <div>
+          <img src="IMAGENES/diseno_interaccion.png" alt="Esquema de diseño de interacción" class="img-fluida">
+        </div>
+      </section>
+
+      <!-- DEFINICIÓN -->
+      <section class="definicion-seccion">
+        <div>
+          <img src="IMAGENES/imagen_8.png" alt="Ilustración conceptual" class="img-fluida">
+        </div>
+        <div>
+          <h2>Definición</h2>
+          <ul role="list">
+            <li>El <strong>diseño de interacción (IxD)</strong> es la disciplina que se centra en la <strong>interactividad entre el usuario y la plataforma digital</strong>.</li>
+            <li>Busca que cada acción (clic, desplazamiento, llenado de formularios, reproducción de videos, etc.) sea clara, comprensible y satisfactoria.</li>
+            <li>Está estrechamente relacionado con la <strong>experiencia de usuario (UX)</strong>, ya que ambos trabajan para que el usuario logre sus objetivos de manera fluida.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECCIÓN DE OBJETIVOS CON TARJETAS INTERACTIVAS -->
+      <div class="titulo-seccion-centrado">Objetivos principales</div>
+      
+      <section class="contenedor-tarjetas">
+        
+        <!-- Tarjeta 1 -->
+        <div class="tarjeta-giro">
+          <div class="tarjeta-interior">
+            <div class="tarjeta-frontal">
+              <h3>Facilitar la navegación</h3>
+            </div>
+            <div class="tarjeta-trasera">
+              <p>Que el usuario encuentre lo que busca sin confusión.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="tarjeta-giro">
+          <div class="tarjeta-interior">
+            <div class="tarjeta-frontal">
+              <h3>Optimizar la usabilidad</h3>
+            </div>
+            <div class="tarjeta-trasera">
+              <p>Reducir pasos innecesarios y simplificar procesos (ejemplo: compra en línea).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="tarjeta-giro">
+          <div class="tarjeta-interior">
+            <div class="tarjeta-frontal">
+              <h3>Generar satisfacción</h3>
+            </div>
+            <div class="tarjeta-trasera">
+              <p>Que la interacción sea atractiva y memorable.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="tarjeta-giro">
+          <div class="tarjeta-interior">
+            <div class="tarjeta-frontal">
+              <h3>Asegurar accesibilidad</h3>
+            </div>
+            <div class="tarjeta-trasera">
+              <p>Que cualquier persona, independientemente de sus capacidades, pueda usar la página.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+		
+      <!-- EJEMPLOS DE INTERACCION WEB CON TARJETAS DE CARRUSEL -->
+   <div class="titulo-seccion-centrado">Ejemplos de Interacción web</div>
+</script>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrusel de Interacciones Web</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9fbff; }
+
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      overflow: hidden;
+      border: 2px solid #004080;
+      border-radius: 10px;
+      background-color: #f0f8ff;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .slide h3 {
+      color: #004080;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .slide p {
+      font-size: 18px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* Flechas centradas */
+    .prev, .next {
+      position: absolute;
+      top: 50%; /* Centrado vertical */
+      transform: translateY(-50%);
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+    .prev:hover, .next:hover {
+      background-color: #0080ff;
+      transform: translateY(-50%) scale(1.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .prev:active, .next:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    /* Indicadores */
+    .indicators {
+      text-align: center;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
+
+    .indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #004080;
+    }
+  </style>
+</head>
+<body>
+
+<div class="carousel">
+  <div class="slides">
+    <div class="slide"><h3>Micro interacciones</h3><p>Pequeños detalles visuales que confirman al usuario que su acción tuvo éxito.</p></div>
+    <div class="slide"><h3>Interacciones de entrada de datos</h3><p>Permiten enviar información estructurada y recibir retroalimentación instantánea.</p></div>
+    <div class="slide"><h3>Interacciones multimedia y de navegación</h3><p>Cambian la forma tradicional de ver contenido estático para hacerlo inmersivo.</p></div>
+    <div class="slide"><h3>Herramientas dinámicas y calculadoras</h3><p>Usadas en finanzas, salud o comercio electrónico para dar respuestas personalizadas.</p></div>
+    <div class="slide"><h3>Interacciones de Gamificación</h3><p>Utilizan mecánicas de juego para aumentar el tiempo de permanencia del usuario.</p></div>
+    <div class="slide"><h3>Botones claros y visibles</h3><p>Como comprar, enviar, entrar, siguiente, etc.</p></div>
+    <div class="slide"><h3>Menús desplegables intuitivos</h3><p>Guían al usuario sin sobrecargarlo de opciones.</p></div>
+    <div class="slide"><h3>Animaciones sutiles</h3><p>Indicadores de carga y transiciones suaves entre secciones.</p></div>
+    <div class="slide"><h3>Formularios optimizados</h3><p>Campos fáciles de llenar y validaciones inmediatas de errores.</p></div>
+    <div class="slide"><h3>Feedback visual</h3><p>Mensajes de confirmación al completar una acción. Ejemplo: “Tu pedido ha sido enviado”.</p></div>
+  </div>
+
+  <!-- Flechas centradas -->
+  <button class="prev">&#10094;</button>
+  <button class="next">&#10095;</button>
+
+  <!-- Indicadores -->
+  <div class="indicators">
+    <span class="indicator active"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+    <span class="indicator"></span>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelector('.slides');
+  const slideCount = document.querySelectorAll('.slide').length;
+  const indicators = document.querySelectorAll('.indicator');
+  let index = 0;
+
+  function showSlide(i) {
+    slides.style.transform = `translateX(-${i * 100}%)`;
+    indicators.forEach(ind => ind.classList.remove('active'));
+    indicators[i].classList.add('active');
+  }
+
+  document.querySelector('.next').addEventListener('click', () => {
+    index = (index + 1) % slideCount;
+    showSlide(index);
+  });
+
+  document.querySelector('.prev').addEventListener('click', () => {
+    index = (index - 1 + slideCount) % slideCount;
+    showSlide(index);
+  });
+
+  indicators.forEach((ind, i) => {
+    ind.addEventListener('click', () => {
+      index = i;
+      showSlide(index);
+    });
+  });
+
+  // Movimiento automático cada 5 segundos
+  setInterval(() => {
+    index = (index + 1) % slideCount;
+    showSlide(index);
+  }, 5000);
+	
+</script>
+	
+	 <!-- SECCIÓN DE VIDEOS -->
+	
+	
+	
+	
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Videos con Miniaturas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    .video-card {
+      position: relative;
+      width: 220px;
+      cursor: pointer;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
+
+    .video-card:hover {
+      transform: scale(1.05);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,0,0,0.8);
+      color: #fff;
+      text-align: center;
+      padding: 8px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎬 Galería de Videos</h2>
+
+  <div class="gallery">
+    <!-- Video 1 -->
+    <a href="https://www.youtube.com/watch?v=go8n5JvbzwY" target="_blank" class="video-card">
+      <img src="https://img.youtube.com/vi/go8n5JvbzwY/0.jpg" alt="Video 1">
+      <div class="overlay">Ver Video 1</div>
+    </a>
+
+    <!-- Video 2 -->
+    <a href="https://www.youtube.com/watch?v=AAgvSEF6Ch4" target="_blank" class="video-card">
+      <img src="https://img.youtube.com/vi/AAgvSEF6Ch4/0.jpg" alt="Video 2">
+      <div class="overlay">Ver Video 2</div>
+    </a>
+
+    <!-- Video 3 -->
+    <a href="https://www.youtube.com/watch?v=mtnepVGG39w" target="_blank" class="video-card">
+      <img src="https://img.youtube.com/vi/mtnepVGG39w/0.jpg" alt="Video 3">
+      <div class="overlay">Ver Video 3</div>
+    </a>
+  </div>
+
+</body>
+</html>
+
+	
+	
+	
+	
+	 <!-- ENLACE AL CANAL -->
+   
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Canal UXER School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .youtube-button {
+      display: inline-block;
+      background: #FF0000;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .youtube-button:hover {
+      background: #cc0000;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎥 Visita el canal UXER School</h2>
+
+  <!-- Botón pequeño -->
+  <a href="https://www.youtube.com/@uxerschool" target="_blank" class="youtube-button">
+    🔗 Canal UXER School
+  </a>
+
+</body>
+</html>
+
+	  
+	  
+	  
+  </a>
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
+
+</body>
+</html>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pie de página WikiDiseño</title>
+  <style>
+    /* Estilos del pie de página en una sola línea */
+    .footer-line {
+      background-color: #e6d6f5; /* morado claro */
+      padding: 10px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .footer-logo .highlight {
+      color: purple;
+      font-weight: bold;
+    }
+
+    .footer-links a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .footer-social a img {
+      width: 28px;
+      height: 28px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+     <!-- Redes sociales -->
+		<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pie de página WikiDiseño</title>
+  <!-- Enlace a Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Estilos del pie de página en una sola línea */
+    .footer-line {
+      background-color: #e6d6f5; /* morado claro */
+      padding: 10px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .footer-logo .highlight {
+      color: purple;
+      font-weight: bold;
+    }
+
+    .footer-links a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+
+    .footer-social a {
+      margin-left: 15px;
+      font-size: 24px;
+      color: black;
+      transition: color 0.3s;
+    }
+
+    .footer-social a:hover {
+      color: purple; /* cambia de color al pasar el mouse */
+    }
+  </style>
+</head>
+<body>
+	
+	
+
+  <!-- Pie de página en una sola línea -->
+  <footer class="footer-line">
+    <div class="footer-content">
+      <!-- Logo -->
+      <div class="footer-logo">
+        <h2>Wiki <span class="highlight">Diseño</span></h2>
+      </div>
+
+      <!-- Enlaces legales -->
+      <nav class="footer-links">
+        <a href="#">Política de privacidad</a>
+        <a href="#">Aviso Legal</a>
+        <a href="#">Contacto</a>
+      </nav>
+
+      <!-- Redes sociales con Font Awesome -->
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+    
